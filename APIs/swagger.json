@@ -1,8 +1,9 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "1.0.0",
-    "title" : "The title",
-    "description" : "Put a short but meaningful description here"
+    "version" : "1.0",
+    "title" : "Notary (NRY) interface specification",
+    "description" : "The \"Notary\" (NRY) specification supports financial service innovation by defining a standard interface and protocol for recording financial grade transactions in a distributed ledger."
   },
+  "paths" : { }
 }
