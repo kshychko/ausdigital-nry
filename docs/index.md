@@ -1,6 +1,6 @@
 **[Back to AusDigital.org](http://ausdigital.org/)**
 
-# DBC Notary
+# ADBC Notary
 
  * ![raw](http://rfc.unprotocols.org/spec:2/COSS/raw.svg)
  * Editor: Chris Gough
@@ -22,12 +22,14 @@ Gateway that it uses.
  * Ensure information from private documents is not leaked into the public domain, even in a future where tools exist to overcome contemporary cryptographic methods.
  * Provide socially responsible, blockchain-efficient public storage of existance proofs. This means constant low impact on shared the ledger even if a very large number of objects are notarised (in a given time frame). 
  * Leverage the strongest consensus product available (maximise resistance to sybll attacks).
- * Leverage the most efficient proof market (minimise cost of proof at the given consensus-strength).
- * Avoid single point of failure in the proof storage and distribution network.
+ * Leverage the most efficient proof market available (minimise cost of proof at the given consensus-strength).
+ * Avoid single point of failure in the network that stores and distributes existance proof.
  
+
 These are achieved by:
- * Notarising all objects in a timeframe into a proscribed Merkel-DAG data structure that is pegged to the Blockchain with a single record.
- * Adopting the BitCoin ledger, which is the largest public blockchain with the highest market capitalisation (rather than propietary network), and is powered by an  open market of commodity mining services.
+
+ * Notarising all objects (in a timeframe) into a proscribed Merkel-DAG data structure that is pegged to the Blockchain with a single record.
+ * Adopting the BitCoin ledger, which is the largest public blockchain with the highest market capitalisation (rather than propietary network), and is powered by an  open market of commodity mining services with multiple open source software implementations.
  * Distributing the pegged Merkel-DAG proof structure with a decentralised, content-addressable memory system (modelled on and compatible with the Inter Planetary File System, IPFS).
 
 
