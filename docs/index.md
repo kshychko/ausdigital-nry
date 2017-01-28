@@ -16,21 +16,35 @@ Gateway that it uses.
 
 ## Goals
 
- * Facilitate features in the TAP protocol that prevent post-hoc "Fraud of Commission" (prevent retrospective creation of false document history).
- * Facilitate features in the TAP protocol that prevent post-hoc "Fraud of Ommission" (prevent surrupticious destruction of legitimate document history).
- * Ensure sufficient public data for transaction stakeholders to independently verify integrity of shared-secret documents.
- * Ensure information from private documents is not leaked into the public domain, even in a future where tools exist to overcome contemporary cryptographic methods.
- * Provide socially responsible, blockchain-efficient public storage of existance proofs. This means constant low impact on shared the ledger even if a very large number of objects are notarised (in a given time frame). 
- * Leverage the strongest consensus product available (maximise resistance to sybll attacks).
+Facilitate features in the TAP protocol that:
+
+ * Prevent post-hoc "Fraud of Commission" (retrospective creation of false document history).
+ * Prevent post-hoc "Fraud of Ommission" (surrupticious destruction of legitimate document history).
+
+
+Balance information security with utility:
+
+ * Sufficient public data for transaction stakeholders to independently verify integrity of shared-secret documents.
+ * Information from private documents is not leaked into the public domain, even in a future where tools exist to overcome contemporary cryptographic methods.
+ * Ensure notarised object sources are identified (to a known and meaningfull level of identity assurance), but do not leak information about subjects that could be used to anlayse communication or transaction traffic.
+ * Publically auditable (transparent), to enalble notary reputation to be based on independent performance evaluation using transparent, non-repudiable and objective data. In adition to the relevent data being open, the cost of monitoring and verifying the activities of a notary must not be prohibitive.
+
+
+Sustainable and secure infrastructure:
+
+ * Socially responsible, blockchain-efficient public storage of existance proofs. This means low externalised community cost (impact on the shared ledger) even if a very large number of objects are notarised in a given time frame.
+ * Leverage the strongest consensus product available (maximise resistance to Sybl attacks).
  * Leverage the most efficient proof market available (minimise cost of proof at the given consensus-strength).
  * Avoid single point of failure in the network that stores and distributes existance proof.
- 
+ * 
+
 
 These are achieved by:
 
- * Notarising all objects (in a timeframe) into a proscribed Merkel-DAG data structure that is pegged to the Blockchain with a single record.
- * Adopting the BitCoin ledger, which is the largest public blockchain with the highest market capitalisation (rather than propietary network), and is powered by an  open market of commodity mining services with multiple open source software implementations.
+ * Notarising all objects (in a timeframe) into a proscribed Merkel-DAG data structure that is pegged to the Blockchain with a single record, which references a minimal signed proof document that can be verified before accessing a significant data volumes.
  * Distributing the pegged Merkel-DAG proof structure with a decentralised, content-addressable memory system (modelled on and compatible with the Inter Planetary File System, IPFS).
+ * Avoid propietary blockchains. Adopt the largest public blockchain with the highest market capitalisation (BitCoin), thereby sourcing work-proof from an open market of commodity mining services and multiple open source -oftwaresimplementations.
+
 
 
 ## Status
