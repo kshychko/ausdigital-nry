@@ -39,10 +39,6 @@ To ensure efficient auditability of notaries, an independant observer should be 
  * The NOTARY MUST commit their reputation to the availability of the HOC until the DURABILITY date.
  * `proof.json` MUST contain a HOC_HEAD attribute with a value that is a valid content-address hash.
 
-TODOs
-
- * TODO: Should the DCP define endpoints for accessing notarised objects? for example, if I am a notary, I would publish (possibly multiple: HTTPS URL, IPFS true/false) endpoints for accessing my notarised objects.
-
 
 ### Validating HOC Proof
 
@@ -116,11 +112,8 @@ The AC_CODE partially defines the protocol for accessing the record referenced i
 
 Because the network is a business identifier URN, the AC_CODE interpretation context can be determined by DCP query...
 
- * TODO: document DCP document and process types for interpreting AC_CODE
-
 If the NETWORK is the URN of the notary, the DCP lookup of RECORD_ACCESS_PROTOCOL MUST return `ausdigital-nry/1` or higher version. Otherwise they can be anything (including undefined).
 
- * TODO: cross reference ausdigital specification naming specification
 
 If the DCP document type / process type of the HOC_HEADER list item's NETWORK is `ausdigital-nry/1`, then the allowable value of AC_CODE are:
 
@@ -134,8 +127,6 @@ If the DCP document type / process type of the HOC_HEADER list item's NETWORK is
 
 
 ### Validating HOC Header
-
- * TODO: document DCP lookup procedure for determining AC_CODE interpretation
 
 note: this can be cached: when processing a HOC Header, the value of DCP lookups MAY be assumed not to change between HOC_HEADER list items.
 
