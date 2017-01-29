@@ -44,12 +44,6 @@ To ensure efficient auditability of notaries, an independant observer should be 
 
 The first step in validating the Merkel-Dag is to check that the proof.json exists and is no larger than MAX_SIZE.
 
-TODO: determine reasonable MAX_SIZE. This will be the larger of:
-
- * gpg2 detached sig
- * json document
- * some nice round number of KB, 350??
-
 For example, assuming the blockchain contains `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/`, the validation begins with:
 
  * test for the existance of `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/proof.json`
