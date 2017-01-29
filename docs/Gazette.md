@@ -69,10 +69,10 @@ For example, assuming the blockchain contains `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemt
  * test for the existance of `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/proof.sig`
  * if the proof.sig is larger than MAX_SIZE, it is not valid. There is no need to download more than (MAX_SIZE +1 byte) in this step.
 
-If `proof.json` and `proof.sig` both exist and neither exceed MAZ_SIZE, the next step is to ensure that proof.json validates agains the json schema. Assuming `proof.json` and `proof.schema` are both in the current working directory, the `jsonschema` program could be used like this:
+If `proof.json` and `proof.sig` both exist and neither exceed MAZ_SIZE, the next step is to ensure that `proof.json` validates agains the json schema. Assuming `proof.json` and `proof.schema` are both in the current working directory, the `jsonschema` program could be used like this:
 
 ```bash
-jsonschema -i sample.json sample.schema
+jsonschema -i proof.json proof.schema
 ```
 
 If the schema is valid, it will contains a `NOTARY` element containing the business identifier of the party responsible for notarisation. The value of this attribute is a business identifier which can be resolved via the AusDigital [Digital Capability Lookup](https://ausdigital-dcl.readthedocs.io), which will yield an AusDigital [Digital Capability Provider](https://ausdigital-dcp.readthedocs.io) where the public keys of that organisation can be discovered.
@@ -133,7 +133,7 @@ If the NETWORK is the URN of the notary, the DCP lookup of RECORD_ACCESS_PROTOCO
 If the DCP document type / process type of the HOC_HEADER list item's NETWORK is `ausdigital-nry/1`, then the allowable value of AC_CODE are:
 
 | Access Protocol | AC_CODE | HOC Detail | Notarised Object | Comment                         |
-| ausdigital-nry/1 |--------|------------|------------------|---------------------------------|
+|-----------------|---------|------------|------------------|---------------------------------|
 | ausdigital-nry/1 | 0      | Public     | Public           | Transparently auditable open data (e.g. public HOC documents). |
 | ausdigital-nry/1 | 1      | Public     | Private          | Independently auditable secret data (e.g. business transaciton records, such as eInvoices). |
 | ausdigital-nry/1 | 2      | Private    | Public           | Plausibly deniabile open data (that can be subsequently rendered transparently auditable by publishing the HOC Detail). |
