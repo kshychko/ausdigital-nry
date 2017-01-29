@@ -41,7 +41,6 @@ To ensure efficient auditability of notaries, an independant observer should be 
 
 TODOs
 
- * TODO: create canonical reference for this specification, including version numbers etc. Should it be a URL? it can't be a self-referencing IPFS address :) And I'm not sure that an IPNS address is the right idea.
  * TODO: Should the DCP define endpoints for accessing notarised objects? for example, if I am a notary, I would publish (possibly multiple: HTTPS URL, IPFS true/false) endpoints for accessing my notarised objects.
 
 
