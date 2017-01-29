@@ -41,7 +41,6 @@ To ensure efficient auditability of notaries, an independant observer should be 
 
 TODOs
 
- * TODO: notary protocol naming... probably better to have an ausditital naming standard (ausdigital-foo/version) and reference it here, saying "PROTOCOL must be valid version of ausdigital-nry per the ausdigital naming standard"
  * TODO: insert JSON reference example of HOC_PROOF.json
  * TODO: make JSON Schema document defining a valid HOC_PROOF
  * TODO: create canonical reference for this specification, including version numbers etc. Should it be a URL? it can't be a self-referencing IPFS address :) And I'm not sure that an IPNS address is the right idea.
