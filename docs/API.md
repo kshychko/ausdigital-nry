@@ -40,7 +40,8 @@ Posting an object to the `/public/` or `/private/` notary resource causes the no
 
 Assuming the current working directory contains the object (as `object.foo`) and parameters (as `param.json`), the following curl command will post the message to the notary endpoint:
 
-```curl -X POST \
+```bash
+curl -X POST \
  -H "Content-Type: multipart/form-data" \
  -H "Authorization: Bearer <API_TOKEN>"
  -F "object=@object.foo" \
@@ -85,26 +86,43 @@ When the notary recieves an invalid notarisation request, or if it recieves a va
 The DOC_ID returned in the body of successful POSTs (HTTP code 200 responses) is a valid content identifier. This DOC_ID is subsequently used as notarised object identifier in blockchain Gazettal. It is also the DOC_ID used in `GET /public/{DOC_ID}/` and `GET /private/{DOC_ID}/` API calls.
   
 
-`POST {object+params} /public/`
-
-`POST {object+params} /private/`
-
-parameters:
- * DISPOSAL_DATE
- * RESTRICT_LIST
- * ALT_NETWORK
-
-return:
- * 200 + address-hash of POSTed object
- * TODO: what other meta data?
- * TODO: enumarate error conditions...
-
-
-
 ## Search Notary Archives
 
-Given the appropriate authorisation and other circumstances, can be used as an identifier to access the object in the system of record
+There are two search interfaces:
+
+ * `GET /public/?{filter}/`
+ * `GET /private/?{filter}/`
+
+Both return a list of DOC_IDs that match the `{filter}`.
+
+ * The `GET /private/?{filter}/` form MUST use an API token issued by an `ausdigital-idp/1` Identity Provider.
+ * The `GET /public/?{filter}/ form MAY use an API token.
+
+JWT issued by `ausdigital-idp/1` IDPs include a business identifier cliam. 
+
+The filter may inclued the following parameters:
+
+ * `restrict_list=<STR>`, where <STR> is a comma separated list of URN business identifiers per `ausdigital-dcp/1`. This filter is applied to businesses in the RESTRICT_LIST POST parameter of the objects. Where multiple URNs are provided, they are combined with logical AND. This parameter is optional, if not supplied the business identifier claim in the API Token JWT is used (meaning "restrict to message I am authorised to see")
+ * `submitted_after=<STR>`, where <STR> is an ISO 8601 datetime. Only objects after this datetime will be returned.
+ * `submitted_before=<STR>`
+
+If the `restrict_list` filter is specified, but the business identifier claim in the JWT is not included in the `restrict_list` filter, then the API MUST return an 403 error response.
 
 TODO:
 
- * refactor and elabrate content in Gazzette.md
+ * pagination parameters (limit and fromr
+
+
+## Access Notarised Objects
+
+If the DURABILITY datetime of the notarise object is now or in the future:
+
+ * Any DOC_ID listed in the response from a `GET /public/?{filter}` query MUST be available with `GET /public/{DOC_ID}/`
+ * Any DOC_ID listed in the response from a `GET /private/?{filter}` query MUST be available with `GET /private/{DOC_ID}/`, if the same API token is used for both queries.
+ * The notarised object MAY also be available via IPFS using the `/ipfs/{DOC_ID}` address.
+
+If the DURABILITY datetime of the notarised object is in the past:
+
+ * Any DOC_ID listed in the response from a `GET /public/?{filter}` query MAY be available with `GET /public/{DOC_ID}/`, or it MAY return an HTTP 404 response.
+ * Any DOC_ID listed in the response from a `GET /private/?{filter}` query MAY be available with `GET /private/{DOC_ID}/` (if the same API token is used for both queries), or it MAY return an HTTP 404 response.
+ * The notarised object MAY also be available via IPFS using the `/ipfs/{DOC_ID}` address.
