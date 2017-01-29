@@ -41,8 +41,6 @@ To ensure efficient auditability of notaries, an independant observer should be 
 
 TODOs
 
- * TODO: insert JSON reference example of HOC_PROOF.json
- * TODO: make JSON Schema document defining a valid HOC_PROOF
  * TODO: create canonical reference for this specification, including version numbers etc. Should it be a URL? it can't be a self-referencing IPFS address :) And I'm not sure that an IPNS address is the right idea.
  * TODO: Should the DCP define endpoints for accessing notarised objects? for example, if I am a notary, I would publish (possibly multiple: HTTPS URL, IPFS true/false) endpoints for accessing my notarised objects.
 
@@ -209,8 +207,3 @@ The elements in the HOC Detail inherits an AC_CODE and NETWORK from the referenc
 
  * If the inherited AC_CODE is "0", and `proof.json` NOTARY identifies the same business as the inherited NETWORK, and the listed DURABILITY date is in the future, then the OBJECT this HOC Detail must be available through the API (e.g. `GET /public/{content_address}`)
  * If the inherited AC_CODE is "1", "2" or "3"; and `proof.json` NOTARY identifies the same business as the inherited NETWORK, and the listed DURABILITY date is in the future, and the API Token has a valid identity claim, and the identity in the API token identifies a business in the RESTRICT_LIST of the object, then the OBJECT this HOC Detail MUST be available through the API (e.g. `GET /private/{content_address}`)
-
-
-TODO:
-
- * create `hoc_detail.schema`
