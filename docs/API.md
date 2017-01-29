@@ -75,10 +75,6 @@ When the notary recieves a valid notarisation request, if it does not refuse the
  * return HTTP body that is JSON document that is valid per `nry_post_response.schema` JSON schema.
  * The body must contain a DOC_ID attribute containing a verifyable content-address of the notarised object, using a hash and encoding scheme that is a valid IPFS address.
 
-TODO:
-
- * re-align response objects with https://app.swaggerhub.com/domains/ausdigital/ErrorModel/1.0
-
 
 When the notary recieves an invalid notarisation request, or if it recieves a valid request that it choses to refuse, or if it experiences technical difficulties, then it:
 
