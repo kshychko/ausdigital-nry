@@ -19,10 +19,6 @@ The following examples assume the this address is the address of the directory-l
 
  * `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/`
 
-TODO:
-
- * create and publish better example files, and update the referece to use them.
-
 
 ## HOC Proof
 
