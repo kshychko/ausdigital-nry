@@ -96,9 +96,8 @@ There are two search interfaces:
 Both return a list of DOC_IDs that match the `{filter}`.
 
  * The `GET /private/?{filter}/` form MUST use an API token issued by an `ausdigital-idp/1` Identity Provider.
- * The `GET /public/?{filter}/ form MAY use an API token.
+ * The `GET /public/?{filter}/` form MAY use an API token.
 
-JWT issued by `ausdigital-idp/1` IDPs include a business identifier cliam. 
 
 The filter may inclued the following parameters:
 
@@ -107,10 +106,6 @@ The filter may inclued the following parameters:
  * `submitted_before=<STR>`
 
 If the `restrict_list` filter is specified, but the business identifier claim in the JWT is not included in the `restrict_list` filter, then the API MUST return an 403 error response.
-
-TODO:
-
- * pagination parameters (limit and fromr
 
 
 ## Access Notarised Objects
