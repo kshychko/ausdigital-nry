@@ -50,7 +50,7 @@ These are achieved by:
 This spec is an early draft for consuiltation.
 
 This specification aims to support the Australian Digital Business Council
-[eInvoicing initiative](https://ausdigital.org), and is under active
+[eInvoicing initiative](http://ausdigital.org), and is under active
 development at
 [https://github.com/ausdigital/ausdigital-nry](https://github.com/ausdigital/notary).
 
