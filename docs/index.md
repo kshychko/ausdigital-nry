@@ -89,7 +89,6 @@ This document is governed by the [2/COSS](http://rfc.unprotocols.org/spec:2/COSS
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
 "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in
 RFC 2119.
-# Notary API
 
 
 # Application Programming Interface
