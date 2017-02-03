@@ -56,11 +56,20 @@ development at
 
 Comments and feedback are encouraged and welcome. Pull requests with improvements are welome too.
 
-## Links
 
-This spec depends on, and should be read in conjunction with the AusDigital [Identity Provider (IDP)](https://ausdigital-idp.readthedocs.io) specification.
+## Glossary:
 
-The AusDigital [Transaction Access Point (TAP)](https://ausdigital-tap.readthedocs.io) specification depends on this document. Note, while this specification describes a generic notary interface, the TAP specification provides further restriction on the use of the notary.
+Phrase | Definition
+------------ | -------------
+ausdigital-nry/1 | This specification.
+ausdigital-dcl/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [Digital Capability Locator (DCL)](https://ausdigital-dcl.readthedocs.io) specification
+ausdigital-dcp/1 | Version 1 of the AusDigtial [Digital Capability Provider (DCP)](https://ausdigital-dcp.readthedocs.io) specification
+ausdigital-idp/1 | Version 1 of the AusDigital [Identity Provider (IDP)](https://ausdigital-idp.readthedocs.io) specification.
+ausdigital-tap/1 | Version 1 of the AusDigital [Transaction Access Point(TAP)](http://ausdigital.org/transaction-access-point) specification.
+
+This service depends on `ausdigital-dcL/1`, `ausdigital-dcp/1` and `ausdigital-idp/1`.
+
+The `ausdigital-tap` specification depends on this document. Note, while this specification describes a generic notary interface, the TAP specification provides further restriction on the use of the notary.
  
 
 ## Licence
