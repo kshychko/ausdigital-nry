@@ -57,7 +57,7 @@ development at
 Comments and feedback are encouraged and welcome. Pull requests with improvements are welome too.
 
 
-## Glossary:
+## Glossary
 
 Phrase | Definition
 ------------ | -------------
