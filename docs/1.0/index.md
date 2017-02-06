@@ -403,7 +403,7 @@ In addition to global objective notary reputation (which can be based on transpa
 The HOC Detail is a JSON document of arbitrary size, referenced by its content-address in the HOC Header list.
 
  * The HOC Detail MUST contain a list of one or more elements.
- * The HOC Detail MUST be validated against the `hoc_detail.schema` JSON schema.
+ * The HOC Detail MUST be validated against the [`hoc_detail.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/hoc_detail.schema) JSON schema.
 
 
 Every element in the HOC Detail list:
@@ -411,12 +411,12 @@ Every element in the HOC Detail list:
  * MUST contain a `DURABILITY` attribute, which contains an ISO 8601 formatted date string.
  * The `DURABILITY` date MUST NOT be less than one month ahead of the `proof.json` SIG_DATE attribute.
  * The `DURABILITY` date MUST NOT be less than the corresponding `HOC_HEADER` durability date.
- * MUST contain an OBJECT attribute, which contains a content-address of some notarised object. 
+ * MUST contain an `OBJECT` attribute, which contains a content-address of some notarised object. 
 
 The elements in the HOC Detail inherits an `AC_CODE` and `NETWORK` from the reference to the HOC Detail in the HOC Header.
 
- * If the inherited `AC_CODE` is "0", and `proof.json` NOTARY identifies the same business as the inherited `NETWORK`, and the listed `DURABILITY` date is in the future, then the OBJECT this HOC Detail must be available through the API (e.g. `GET /public/{content_address}`)
- * If the inherited `AC_CODE` is "1", "2" or "3"; and `proof.json` NOTARY identifies the same business as the inherited `NETWORK`, and the listed `DURABILITY` date is in the future, and the API Token has a valid identity claim, and the identity in the API token identifies a business in the RESTRICT_LIST of the object, then the OBJECT this HOC Detail MUST be available through the API (e.g. `GET /private/{content_address}`)
+ * If the inherited `AC_CODE` is "0", and `proof.json` NOTARY identifies the same business as the inherited `NETWORK`, and the listed `DURABILITY` date is in the future, then the `OBJECT` this HOC Detail must be available through the API (e.g. `GET /public/{content_address}`)
+ * If the inherited `AC_CODE` is "1", "2" or "3"; and `proof.json` NOTARY identifies the same business as the inherited `NETWORK`, and the listed `DURABILITY` date is in the future, and the API Token has a valid identity claim, and the identity in the API token identifies a business in the RESTRICT_LIST of the object, then the `OBJECT` this HOC Detail MUST be available through the API (e.g. `GET /private/{content_address}`)
 
  
  # Related Material
