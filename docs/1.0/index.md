@@ -255,7 +255,7 @@ The HOC Proof is used to validate the Full HOC prior to potentially intensive co
 To ensure efficient auditability of notaries, an independent observer should be able to parse the blockchain and extract `OP_RETURN` transactions that look like IPFS addresses. For each IPFS address-like record found, the observer should be able to ignore invalid HOCs cheaply. The purpose of the HOC Proof is to provide a compact and verifiable reference to the HOC_HEAD document (which may be less compact).
 
  * The Gazetted address MUST contain a HOC Proof, comprised of two files, `proof.json` and `proof.sig`.
- * `proof.json` MUST be valid per the `proof.schema` JSON schema specification.
+ * `proof.json` MUST be valid per the [`proof.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/proof.schema) JSON schema specification.
  * `proof.json` MUST contain a PROTOCOL attribute, which identifies the protocol for processing the Merkel-DAG. The value of the PROTOCOL attribute MUST be `ausditigal-nry/1.0`.
  * `proof.json` MUST contain a SIG_DATE attribute containing an ISO 8601 formatted date and time string identifying when the notary notionally created the `proof.sig`
  * `proof.json` MUST contain a NOTARY attribute, which references the business identifier of the notary in URN format consistent with AusDigital DCL and DCP specifications.
@@ -279,7 +279,7 @@ For example, assuming the blockchain contains `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemt
  * test for the existence of `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/proof.sig`
  * if the proof.sig is larger than `MAX_SIZE`, it is not valid. There is no need to download more than `MAX_SIZE + 1 byte` in this step.
 
-If `proof.json` and `proof.sig` both exist and neither exceed MAZ_SIZE, the next step is to ensure that `proof.json` validates agains the json schema. Assuming `proof.json` and `proof.schema` are both in the current working directory, the `jsonschema` program could be used like this:
+If `proof.json` and `proof.sig` both exist and neither exceed MAZ_SIZE, the next step is to ensure that `proof.json` validates agains the json schema. Assuming `proof.json` and [`proof.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/proof.schema) are both in the current working directory, the `jsonschema` program could be used like this:
 
 ```bash
 jsonschema -i proof.json proof.schema

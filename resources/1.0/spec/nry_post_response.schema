@@ -3,15 +3,15 @@
 	"type": "object",
 	"description": "schema for notary post response",
 	"definitions": {
-		"docID":{
-			"description": "a verifyable content-address of the notarised object, using a hash and encoding scheme that is a valid IPFS address.",
+		"qmhash":{
+			"description": "a valid content-address hash",
 			"type": "string",
-			"maxLength": 46
+			"pattern": "^Qm[a-zA-Z0-9]{44}$"
 		}
 	},
 	"properties": {
 		"DOC-ID": {
-			$ref: "#/definitions/docID"
+			$ref: "#/definitions/qmhash"
 		}
 	},
 	"additionalProperties": false,
