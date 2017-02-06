@@ -29,8 +29,8 @@
 			"items": {
 				$ref: "#/definitions/urn"
 			}
-		},
+		}
 	},
 	"additionalProperties": false,
-	"required": ["DURABILITY", "NETWORK", "AC_CODE"],
+	"required": ["DURABILITY", "NETWORK", "AC_CODE"]
 }

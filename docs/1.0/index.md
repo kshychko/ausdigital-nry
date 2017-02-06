@@ -176,17 +176,17 @@ When the notary recieves a valid notarisation request, if it does not refuse the
 
  * place notarised object in a system of record (unless the `param.json` `NETWORK` value is not a business identifier of the notary, in which case the notary MAY place the notarised object in a system of record)
  * reference API Spec (return HTTP 200 response code, headers, etc)
- * return HTTP body that is JSON document that is valid per `nry_post_response.schema` JSON schema.
- * The body must contain a DOC_ID attribute containing a verifyable content-address of the notarised object, using a hash and encoding scheme that is a valid IPFS address.
+ * return HTTP body that is JSON document that is valid per [`nry_post_response.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/nry_post_response.schema) JSON schema.
+ * The body must contain a `DOC_ID` attribute containing a verifyable content-address of the notarised object, using a hash and encoding scheme that is a valid IPFS address.
 
 
 When the notary recieves an invalid notarisation request, or if it recieves a valid request that it choses to refuse, or if it experiences technical difficulties, then it:
 
  * MUST return an appropriate HTTP response code (see swagger specification)
- * The body MUST NOT contain a DOC_ID attribute
+ * The body MUST NOT contain a `DOC_ID` attribute
  * etc... TODO
 
-The DOC_ID returned in the body of successful POSTs (HTTP code 200 responses) is a valid content identifier. This DOC_ID is subsequently used as notarised object identifier in blockchain Gazettal. It is also the DOC_ID used in `GET /public/{DOC_ID}/` and `GET /private/{DOC_ID}/` API calls.
+The `DOC_ID` returned in the body of successful POSTs (HTTP code 200 responses) is a valid content identifier. This `DOC_ID` is subsequently used as notarised object identifier in blockchain Gazettal. It is also the `DOC_ID` used in `GET /public/{DOC_ID}/` and `GET /private/{DOC_ID}/` API calls.
   
 
 ## Search Notary Archives
@@ -196,7 +196,7 @@ There are two search interfaces:
  * `GET /public/?{filter}/`
  * `GET /private/?{filter}/`
 
-Both return a list of DOC_IDs that match the `{filter}`.
+Both return a list of `DOC_ID`s that match the `{filter}`.
 
  * The `GET /private/?{filter}/` form MUST use an API token issued by an `ausdigital-idp/1` Identity Provider.
  * The `GET /public/?{filter}/` form MAY use an API token.
@@ -215,14 +215,14 @@ If the `restrict_list` filter is specified, but the business identifier claim in
 
 If the DURABILITY datetime of the notarise object is now or in the future:
 
- * Any DOC_ID listed in the response from a `GET /public/?{filter}` query MUST be available with `GET /public/{DOC_ID}/`
- * Any DOC_ID listed in the response from a `GET /private/?{filter}` query MUST be available with `GET /private/{DOC_ID}/`, if the same API token is used for both queries.
+ * Any `DOC_ID` listed in the response from a `GET /public/?{filter}` query MUST be available with `GET /public/{DOC_ID}/`
+ * Any `DOC_ID` listed in the response from a `GET /private/?{filter}` query MUST be available with `GET /private/{DOC_ID}/`, if the same API token is used for both queries.
  * The notarised object MAY also be available via IPFS using the `/ipfs/{DOC_ID}` address.
 
 If the DURABILITY datetime of the notarised object is in the past:
 
- * Any DOC_ID listed in the response from a `GET /public/?{filter}` query MAY be available with `GET /public/{DOC_ID}/`, or it MAY return an HTTP 404 response.
- * Any DOC_ID listed in the response from a `GET /private/?{filter}` query MAY be available with `GET /private/{DOC_ID}/` (if the same API token is used for both queries), or it MAY return an HTTP 404 response.
+ * Any `DOC_ID` listed in the response from a `GET /public/?{filter}` query MAY be available with `GET /public/{DOC_ID}/`, or it MAY return an HTTP 404 response.
+ * Any `DOC_ID` listed in the response from a `GET /private/?{filter}` query MAY be available with `GET /private/{DOC_ID}/` (if the same API token is used for both queries), or it MAY return an HTTP 404 response.
  * The notarised object MAY also be available via IPFS using the `/ipfs/{DOC_ID}` address.
 
 

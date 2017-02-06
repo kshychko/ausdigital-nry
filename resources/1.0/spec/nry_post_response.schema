@@ -1,0 +1,19 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"description": "schema for notary post response",
+	"definitions": {
+		"docID":{
+			"description": "a verifyable content-address of the notarised object, using a hash and encoding scheme that is a valid IPFS address.",
+			"type": "string",
+			"maxLength": 46
+		}
+	},
+	"properties": {
+		"DOC-ID": {
+			$ref: "#/definitions/docID"
+		}
+	},
+	"additionalProperties": false,
+	"required": ["DOC-ID"]
+}
