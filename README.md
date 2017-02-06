@@ -12,4 +12,4 @@ Open source reference implementation: [https://github.com/test-point/testpoint-n
 
 Test suite: [https://github.com/test-point/testpoint-nry](https://github.com/test-point/testpoint-nry)
 
-Live test endpoint: [https://nry.testpoint.io/](https://nry.testpoint.io/)
+Live test endpoint: [http://testpoint.io/nry](http://testpoint.io/nry)

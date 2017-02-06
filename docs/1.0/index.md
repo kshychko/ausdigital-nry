@@ -423,6 +423,6 @@ The elements in the HOC Detail inherits an `AC_CODE` and NETWORK from the refere
  # Related Material
 
  * [GitHub issues](https://github.com/ausdigital/ausdigital-nry/issues/) for collaborating on the development of the NRY.
- * A reference [NRY service](https://nry.testpoint.io/) (for testing and development purposes).
+ * A reference [NRY service](http://testpoint.io/nry) (for testing and development purposes).
  * Free, Open-Source Software [NRY implementation](https://github.com/test-point/testpoint-nry).
  * An automated [NRY test suite](https://github.com/test-point/testpoint-nry).
