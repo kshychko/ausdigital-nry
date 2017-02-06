@@ -158,23 +158,23 @@ The protocol places no physical restriction on the `object.foo` POSTed to the no
 
 The `param.json` file:
 
- * MUST be a JSON file that is valid per `nry_post_param.schema` JSON schema.
- * MUST contain a DURABILITY attribute that is an ISO 8601 formatted date and time string
- * The DURABILITY date must be not less than one month in the future
- * MUST contain a NETWORK attribute that is a valid business identifier URN per `ausdigital-dcp/1` specification.
- * MUST contain an AC_CODE attribute
- * MUST contain an RESTRICT_LIST attribute, that is a JSON list of zero or more elements that are valid business identifier URNs per `ausdigital-dcp/1`.
- * If the NETWORK value is a business identifier of the notary itself, then the AC_CODE MUST be interpreted per `ausdigital-nry/1`. 
- * If the NETWORK value is not a business identifier of the notary, the AC_CODE MAY be interpreted as AC_CODE = 3.
- * If the NETWORK value is not a business identifier of the notary, the notary MAY silently fail to store the notarised object.
- * If the NETWORK value is not a business identifier of the notary, the Notary API resource must be `/private/` (alternate NETWORKs MUST NOT be used with the `/public/` resource). 
- * If the Notary API resource is `/public/`, the AC_CODE must be "0".
- * If the AC_CODE is "1", "2" or "3" (or may be interpreted as "3"), the Notary API resource must be '/private/'.
+ * MUST be a JSON file that is valid per [`nry_post_param.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/nry_post_param.schema) JSON schema.
+ * MUST contain a `DURABILITY` attribute that is an ISO 8601 formatted date string
+ * The `DURABILITY` date MUST be not less than one month in the future
+ * MUST contain a `NETWORK` attribute that is a valid business identifier URN per `ausdigital-dcp/1` specification.
+ * MUST contain an `AC_CODE` attribute, that is a non-negative integer.
+ * MAY contain an `RESTRICT_LIST` attribute, that is a JSON list of zero or more elements that are valid business identifier URNs per `ausdigital-dcp/1`.
+ * If the `NETWORK` value is a business identifier of the notary itself, then the `AC_CODE` MUST be interpreted per `ausdigital-nry/1`. 
+ * If the `NETWORK` value is not a business identifier of the notary, the `AC_CODE` MAY be interpreted as `AC_CODE` = 3.
+ * If the `NETWORK` value is not a business identifier of the notary, the notary MAY silently fail to store the notarised object.
+ * If the `NETWORK` value is not a business identifier of the notary, the Notary API resource must be `/private/` (alternate `NETWORK`s MUST NOT be used with the `/public/` resource). 
+ * If the Notary API resource is `/public/`, the `AC_CODE` must be 0.
+ * If the `AC_CODE` is 1, 2 or 3 (or may be interpreted as 3), the Notary API resource must be '/private/'.
 
 
 When the notary recieves a valid notarisation request, if it does not refuse the request and does not experience technical difficulties, then it MUST:
 
- * place notarised object in a system of record (unless the `param.json` NETWORK value is not a business identifier of the notary, in which case the notary MAY place the notarised object in a system of record)
+ * place notarised object in a system of record (unless the `param.json` `NETWORK` value is not a business identifier of the notary, in which case the notary MAY place the notarised object in a system of record)
  * reference API Spec (return HTTP 200 response code, headers, etc)
  * return HTTP body that is JSON document that is valid per `nry_post_response.schema` JSON schema.
  * The body must contain a DOC_ID attribute containing a verifyable content-address of the notarised object, using a hash and encoding scheme that is a valid IPFS address.
@@ -323,21 +323,21 @@ The HOC Header is processed after the HOC Proof has been validated. It is essent
  * Each element in `HOC_HEAD` list MUST contain a `HOC_DETAIL`attribute, which is a valid content-address of a file.
  * Each element in `HOC_HEAD` list MUST contain a DURABILITY attribute.
  * The value of DURABILITY attribute MUST be an ISO 8601 formatted string describing the DATE until which the HOC Detail is promised available.
- * Each element in `HOC_HEAD` list MUST contain a NETWORK attribute.
- * The value of NETWORK attribute MUST be a valid business identifier URN per the DCP and DCL specifications.
+ * Each element in `HOC_HEAD` list MUST contain a `NETWORK` attribute.
+ * The value of `NETWORK` attribute MUST be a valid business identifier URN per the DCP and DCL specifications.
  * Each element in `HOC_HEAD` list MUST contain a `AC_CODE` attribute.
  * The value of `AC_CODE` MAY be an empty string.
  * The HOC Header MAY be published directly with its content-address (e.g. `/ipfs/QmNn2peeUaJFxnPVsFjriVxnPZKkh4y2EfRqpEHQ8EYXQr`).
  * The HOC Header MUST be published with its content-address as its name within the directory-like collection that was gazetted to the blockchain (e.g. `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/QmNn2peeUaJFxnPVsFjriVxnPZKkh4y2EfRqpEHQ8EYXQr`).
 
-The `AC_CODE` partially defines the protocol for accessing the record referenced in the `HOC_DETAIL` attribute. The meaning of the `AC_CODE` is dependent on the NETWORK. In other words, the `AC_CODE` is interpreted in the context of the NETWORK.
+The `AC_CODE` partially defines the protocol for accessing the record referenced in the `HOC_DETAIL` attribute. The meaning of the `AC_CODE` is dependent on the `NETWORK`. In other words, the `AC_CODE` is interpreted in the context of the `NETWORK`.
 
 Because the network is a business identifier URN, the `AC_CODE` interpretation context can be determined by DCP query...
 
-If the NETWORK is the URN of the notary, the DCP lookup of RECORD_ACCESS_PROTOCOL MUST return `ausdigital-nry/1` or higher version. Otherwise they can be anything (including undefined).
+If the `NETWORK` is the URN of the notary, the DCP lookup of RECORD_ACCESS_PROTOCOL MUST return `ausdigital-nry/1` or higher version. Otherwise they can be anything (including undefined).
 
 
-If the DCP document type / process type of the `HOC_HEADER` list item's NETWORK is `ausdigital-nry/1`, then the allowable value of `AC_CODE` are:
+If the DCP document type / process type of the `HOC_HEADER` list item's `NETWORK` is `ausdigital-nry/1`, then the allowable value of `AC_CODE` are:
 
 | Access Protocol | `AC_CODE` | HOC Detail | Notarised Object | Comment                         |
 |-----------------|---------|------------|------------------|---------------------------------|
@@ -354,30 +354,30 @@ note: this can be cached: when processing a HOC Header, the value of DCP lookups
 
 For each `HOC_HEADER` list item:
 
- * If the NETWORK is not equal to the `proof.json` NOTARY, and if DCP lookup of RECORD ACCESS PROTOCOL for the NETWORK does not resolve to `ausdigital-nry/1`, then this specification does not describe how to validate that `HOC_DETAIL` record. Refer to the appropriate protocol specification for interpretation of `AC_CODE` values in that context. Do not proceed with validating the listed HOC Header or any HOC Details it seems to refer to (even if the syntax seems identicacompatabledwith tal-nry/1` protocol).
+ * If the `NETWORK` is not equal to the `proof.json` NOTARY, and if DCP lookup of RECORD ACCESS PROTOCOL for the `NETWORK` does not resolve to `ausdigital-nry/1`, then this specification does not describe how to validate that `HOC_DETAIL` record. Refer to the appropriate protocol specification for interpretation of `AC_CODE` values in that context. Do not proceed with validating the listed HOC Header or any HOC Details it seems to refer to (even if the syntax seems identicacompatabledwith tal-nry/1` protocol).
 
-If the NETWORK is equal to the `proof.json` NOTARY, or if the DCL lookup of RECORD ACCESS PROTOCOL for the NETWORK resolves to `ausdigital-nry/1`, then apply the following validation rules:
+If the `NETWORK` is equal to the `proof.json` NOTARY, or if the DCL lookup of RECORD ACCESS PROTOCOL for the `NETWORK` resolves to `ausdigital-nry/1`, then apply the following validation rules:
 
 
-If `AC_CODE` is "0" or "1":
+If `AC_CODE` is 0 or 1:
 
  * If the `HOC_HEADER` item DURABILITY is a future date, the content-address MUST be directly available (for example `/ipfs/QmNn2peeUaJFxnPVsFjriVxnPZKkh4y2EfRqpEHQ8EYXQr`
  * If the `HOC_HEADER` item DURABILITY is a future date, and the `proof.json` DURABILITY is also a future date, the content address MUST be available within the directory-like container of the Full HOC (for example `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/QmNn2peeUaJFxnPVsFjriVxnPZKkh4y2EfRqpEHQ8EYXQr`)
 
 
-If `AC_CODE` is "2" or "3":
+If `AC_CODE` is 2 or 3:
 
  * If the `HOC_HEADER` item DURABILITY is a future date, and the API Token has valid identity claim, the content-address MAY be available via the notary API (`GET /private/{content_address}`).
  * If the `HOC_HEADER` item DURABILITY is a future date, and the API Token has valid identity claim, and the API Token identity claim matches the `proof.json` NOTARY, the content-address MUST be available via the notary API (`GET /private/{content_address}/`).
- To the business identity of the NETWORK, the content-address MUST be available via the notary API (`GET /private/{content_address}`).
+ To the business identity of the `NETWORK`, the content-address MUST be available via the notary API (`GET /private/{content_address}`).
 
 
-When notarised objects are submitted to the notary API with `AC_CODE` "1", "2" or "3" (e.g. `POST {object+params} /private/`), the `RESTRICT_LIST` parameter contains a list of business identifiers permitted to access the object. This RESTRICT_LIST lists the business identifiers of all parties with rights to access the record.
+When notarised objects are submitted to the notary API with `AC_CODE` 1, 2 or 3 (e.g. `POST {object+params} /private/`), the `RESTRICT_LIST` parameter contains a list of business identifiers permitted to access the object. This RESTRICT_LIST lists the business identifiers of all parties with rights to access the record.
 
-When notarised objects are submitted to the notary API with `AC_CODE` "1", the `RESTRICT_LIST` attribute only applies to the notarised object. When notarised objects are submitted to the notary API with `AC_CODE` "2" or "3", the `RESTRICT_LIST` parameter MUST be applied to both the `HOC_DETAIL` and the notarised object. This means:
+When notarised objects are submitted to the notary API with `AC_CODE` 1, the `RESTRICT_LIST` attribute only applies to the notarised object. When notarised objects are submitted to the notary API with `AC_CODE` 2 or 3, the `RESTRICT_LIST` parameter MUST be applied to both the `HOC_DETAIL` and the notarised object. This means:
 
- * If the `HOC_HEADER` item DURABILITY is a future date, and the API Token has valid identity claim, and the API Token identity claim matches one of the identities in the records `ESTRICT_LIST`, and the `AC_CODE` is "3", then the `HOC_DETAIL` content-address MUST be available via the notary API (`GET /private/{content_address}/`)
- * If the `HOC_HEADER` item DURABILITY is a future date, and the API Token has valid identity claim, and the `AC_CODE` is "1", "2" or "3"; then the `HOC_DETAIL` content-address MUST be available via the notary API (`GET /public/{content_address}/`)
+ * If the `HOC_HEADER` item DURABILITY is a future date, and the API Token has valid identity claim, and the API Token identity claim matches one of the identities in the records `ESTRICT_LIST`, and the `AC_CODE` is 3, then the `HOC_DETAIL` content-address MUST be available via the notary API (`GET /private/{content_address}/`)
+ * If the `HOC_HEADER` item DURABILITY is a future date, and the API Token has valid identity claim, and the `AC_CODE` is 1, 2 or 3; then the `HOC_DETAIL` content-address MUST be available via the notary API (`GET /public/{content_address}/`)
  * **TODO**: cross reference API spec (request notarisation on the API)
  * **TODO**: ensure API spec includes `AC_CODE` parameter (validate if /private/ `AC_CODE` in (2,3), if /public/ `AC_CODE` in (0,1), if `AC_CODE==0` `RESTRICT_LIST` empty (no restrictions), if `AC_CODE!=0` `RESTRICT_LIST` must not be empty).
 
@@ -392,7 +392,7 @@ The availability or otherwise of HOC Headers may or may not be directly related 
  * If the `HOC_HEAD.NETWORK` is a URN of the same business as the `proof.json` NOTARY, and if the `RECORD_ACCESS_PROTOCOL` of that business (DCP lookup) is not `ausdigital-nry/1` (or later version), then the notary has absconded their responsibility. This MAY have a strongly negative impact on the reputation of the notary.
  * If the `HOC_HEAD.NETWORK` is a URN of a different business as the `proof.json` NOTARY, the availability or otherwise of `HOC_DETAIL` (and notarised objects) MUST NOT be interpreted as impacting the reputation of either business.
  * The DURABILITY date/time represents the limit of promised availability of the notarised object.
- * If the `HOC_DETAIL` NETWORK is the same business as NOTARY, that means the Notary is taking responsibility for the promise of availability. Failure to meet terms of `AC_CODE` and DURABILITY will detrimentally impact the reputation of the Notary.
+ * If the `HOC_DETAIL` `NETWORK` is the same business as NOTARY, that means the Notary is taking responsibility for the promise of availability. Failure to meet terms of `AC_CODE` and DURABILITY will detrimentally impact the reputation of the Notary.
  
 If the `HOC_HEAD.NETWORK` identifies a business other than the `proof.json` NOTARY, the DURABILITY and `AC_CODE` represent claims (by the notary) about promises made by another business. The reason these MUST NOT be interpreted as impacting the objective reputation of either party is that it is impossible to distinguish false claims from true claims and broken promises.
 
@@ -414,10 +414,10 @@ Every element in the HOC Detail list:
  * The DURABILITY date MUST NOT be less than the corresponding `HOC_HEADER` durability date.
  * MUST contain an OBJECT attribute, which contains a content-address of some notarised object. 
 
-The elements in the HOC Detail inherits an `AC_CODE` and NETWORK from the reference to the HOC Detail in the HOC Header.
+The elements in the HOC Detail inherits an `AC_CODE` and `NETWORK` from the reference to the HOC Detail in the HOC Header.
 
- * If the inherited `AC_CODE` is "0", and `proof.json` NOTARY identifies the same business as the inherited NETWORK, and the listed DURABILITY date is in the future, then the OBJECT this HOC Detail must be available through the API (e.g. `GET /public/{content_address}`)
- * If the inherited `AC_CODE` is "1", "2" or "3"; and `proof.json` NOTARY identifies the same business as the inherited NETWORK, and the listed DURABILITY date is in the future, and the API Token has a valid identity claim, and the identity in the API token identifies a business in the RESTRICT_LIST of the object, then the OBJECT this HOC Detail MUST be available through the API (e.g. `GET /private/{content_address}`)
+ * If the inherited `AC_CODE` is "0", and `proof.json` NOTARY identifies the same business as the inherited `NETWORK`, and the listed DURABILITY date is in the future, then the OBJECT this HOC Detail must be available through the API (e.g. `GET /public/{content_address}`)
+ * If the inherited `AC_CODE` is "1", "2" or "3"; and `proof.json` NOTARY identifies the same business as the inherited `NETWORK`, and the listed DURABILITY date is in the future, and the API Token has a valid identity claim, and the identity in the API token identifies a business in the RESTRICT_LIST of the object, then the OBJECT this HOC Detail MUST be available through the API (e.g. `GET /private/{content_address}`)
 
  
  # Related Material
