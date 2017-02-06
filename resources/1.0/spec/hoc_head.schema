@@ -1,0 +1,48 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "array",
+	"items": {
+		$ref: "#/definitions/hocHead"
+	},
+	"description": "schema for HOC Header",
+	"definitions": {
+		"hocHead": {
+			"type": "object",
+			"properties": {
+				"HOC_DETAIL": {
+					"$ref": "#/definitions/qmhash"
+				},
+				"DURABILITY": {
+					"description": "an ISO 8601 formatted date string",
+					"type": "string",
+					"format": "date"
+				},
+				"NETWORK": {
+					$ref: "#/definitions/urn"
+				},
+				"AC_CODE": {
+					"description": "an attribute",
+					"type": "number",
+					"minimum": 0
+				}
+			},
+			"additionalProperties": false,
+			"required": [
+				"HOC_DETAIL",
+				"DURABILITY",
+				"NETWORK",
+				"AC_CODE"
+			]
+		},
+		"urn": {
+			"type": "string",
+			"pattern": "^urn:[a-z0-9][a-z0-9-]{0,31}:[a-z0-9()+,\\-.:=@;$_!*'%/?#]+$",
+			"description": "a valid business identifier URN per ausdigital-dcl/1 and  ausdigital-dcp/1"
+		},
+		"qmhash": {
+			"description": "a valid content-address hash",
+			"type": "string",
+			"pattern": "^Qm[a-zA-Z0-9]{44}$"
+		}
+	}
+}
