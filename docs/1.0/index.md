@@ -146,9 +146,9 @@ Assuming the current working directory contains the object (as `object.foo`) and
 ```bash
 curl -X POST \
  -H "Content-Type: multipart/form-data" \
- -H "Authorization: Bearer <API_TOKEN>"
+ -H "Authorization: Bearer <API_TOKEN>" \
  -F "object=@object.foo" \
- -F "param.json" \
+ -F "parameters=@param.json" \
  <NRY_URL>
 ```
 
