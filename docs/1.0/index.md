@@ -1,9 +1,9 @@
- * Spec ID: ausdigital.org/nry/1.0
+ * Spec ID: ausdigital.org/ausdigital-nry/1.0
  * ![raw](http://rfc.unprotocols.org/spec:2/COSS/raw.svg)
- * Editor: Chris Gough
+ * Editor: [Chris Gough](mailto:christopher.d.gough@gmail.com)
  * Contributors:
 
-# AusDigital Notary Specification
+# AusDigital Notary (NRY) 1.0 Specification
  
 This document describes the Notary (NRY) specification, which provides an irrefutable
 history of a specific "contract" (e.g. an invoice and it's status lifecycle), pegged to
@@ -63,12 +63,12 @@ Comments and feedback are encouraged and welcome. Pull requests with improvement
 Phrase | Definition
 ------------ | -------------
 ausdigital-nry/1 | This specification.
-ausdigital-dcl/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [Digital Capability Locator (DCL)](https://ausdigital-dcl.readthedocs.io) specification
+ausdigital-dcl/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [Digital Capability Lookup (DCL)](https://ausdigital-dcl.readthedocs.io) specification
 ausdigital-dcp/1 | Version 1 of the AusDigtial [Digital Capability Provider (DCP)](https://ausdigital-dcp.readthedocs.io) specification
 ausdigital-idp/1 | Version 1 of the AusDigital [Identity Provider (IDP)](https://ausdigital-idp.readthedocs.io) specification.
 ausdigital-tap/1 | Version 1 of the AusDigital [Transaction Access Point(TAP)](http://ausdigital.org/transaction-access-point) specification.
 
-This service depends on `ausdigital-dcL/1`, `ausdigital-dcp/1` and `ausdigital-idp/1`.
+This service depends on `ausdigital-dcl/1`, `ausdigital-dcp/1` and `ausdigital-idp/1`.
 
 The `ausdigital-tap` specification depends on this document. Note, while this specification describes a generic notary interface, the TAP specification provides further restriction on the use of the notary.
  
@@ -418,3 +418,11 @@ The elements in the HOC Detail inherits an `AC_CODE` and NETWORK from the refere
 
  * If the inherited `AC_CODE` is "0", and `proof.json` NOTARY identifies the same business as the inherited NETWORK, and the listed DURABILITY date is in the future, then the OBJECT this HOC Detail must be available through the API (e.g. `GET /public/{content_address}`)
  * If the inherited `AC_CODE` is "1", "2" or "3"; and `proof.json` NOTARY identifies the same business as the inherited NETWORK, and the listed DURABILITY date is in the future, and the API Token has a valid identity claim, and the identity in the API token identifies a business in the RESTRICT_LIST of the object, then the OBJECT this HOC Detail MUST be available through the API (e.g. `GET /private/{content_address}`)
+
+ 
+ # Related Material
+
+ * [GitHub issues](https://github.com/ausdigital/ausdigital-nry/issues/) for collaborating on the development of the NRY.
+ * A reference [NRY service](https://nry.testpoint.io/) (for testing and development purposes).
+ * Free, Open-Source Software [NRY implementation](https://github.com/test-point/testpoint-nry).
+ * An automated [NRY test suite](https://github.com/test-point/testpoint-nry).
