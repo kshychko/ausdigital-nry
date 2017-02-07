@@ -4,7 +4,7 @@ The Notary (NRY) Specification provides TBA.
 
  * [Version 1.0](/docs/1.0/index.md)
 
-Specification: [https://ausdigital-nry.readthedocs.io/](https://ausdigital-nry.readthedocs.io/)
+Specification: [http://ausdigital.org/specs/ausdigital-nry/1.0/](http://ausdigital.org/specs/ausdigital-nry/1.0/)
 
 Community discussion/support: [ausdigital.org](http://ausdigital.org)
 
