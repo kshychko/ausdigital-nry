@@ -1,0 +1,19 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"description": "schema for notary post response",
+	"definitions": {
+		"qmhash":{
+			"description": "a valid content-address hash",
+			"type": "string",
+			"pattern": "^Qm[a-zA-Z0-9]{44}$"
+		}
+	},
+	"properties": {
+		"DOC-ID": {
+			$ref: "#/definitions/qmhash"
+		}
+	},
+	"additionalProperties": false,
+	"required": ["DOC-ID"]
+}
