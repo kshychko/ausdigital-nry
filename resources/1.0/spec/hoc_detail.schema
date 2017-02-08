@@ -10,9 +10,9 @@
 			"type": "object",
 			"properties": {
 				"durability": {
-					"description": "an ISO 8601 formatted date string",
+					"description": "an ISO 8601 formatted date annd time string",
 					"type": "string",
-					"format": "date"
+					"format": "date-time"
 				},
 				"object": {
 					"type": "object",
