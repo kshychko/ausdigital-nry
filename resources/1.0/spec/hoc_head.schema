@@ -2,11 +2,11 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "array",
 	"items": {
-		$ref: "#/definitions/hocHead"
+		$ref: "#/definitions/hoc_head"
 	},
 	"description": "schema for HOC Header",
 	"definitions": {
-		"hocHead": {
+		"hoc_head": {
 			"type": "object",
 			"properties": {
 				"hoc_detail": {
