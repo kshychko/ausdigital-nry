@@ -9,18 +9,18 @@
 		"hocHead": {
 			"type": "object",
 			"properties": {
-				"HOC_DETAIL": {
+				"hoc_detail": {
 					"$ref": "#/definitions/qmhash"
 				},
-				"DURABILITY": {
+				"durability": {
 					"description": "an ISO 8601 formatted date string",
 					"type": "string",
 					"format": "date"
 				},
-				"NETWORK": {
+				"network": {
 					$ref: "#/definitions/urn"
 				},
-				"AC_CODE": {
+				"ac_code": {
 					"description": "an attribute",
 					"type": "number",
 					"minimum": 0
@@ -28,10 +28,10 @@
 			},
 			"additionalProperties": false,
 			"required": [
-				"HOC_DETAIL",
-				"DURABILITY",
-				"NETWORK",
-				"AC_CODE"
+				"hoc_detail",
+				"durability",
+				"network",
+				"ac_code"
 			]
 		},
 		"urn": {

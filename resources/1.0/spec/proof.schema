@@ -18,39 +18,39 @@
 		}
 	},
 	"properties": {
-		"PROTOCOL": {
+		"protocol": {
 			"description": "an attribute, which identifies the protocol for processing the Merkel-DAG",
 			"type": "string",
 			"enum": [
 				"ausditigal-nry/1.0"
 			]
 		},
-		"SIG_DATE": {
+		"sig_date": {
 			"description": "an ISO 8601 formatted date and time string identifying when the notary notionally created the proof.sig",
 			"type": "string",
 			"format": "date-time"
 		},
-		"NOTARY": {
+		"notary": {
 			"$ref": "#/definitions/urn"
 		},
-		"PUB_KEY": {
+		"pub_key": {
 			"$ref": "#/definitions/pubKey"
 		},
-		"DURABILITY": {
+		"durability": {
 			"description": "an ISO 8601 formatted date string",
 			"type": "string",
 			"format": "date"
 		},
-		"HOC_HEAD": {
+		"hoc_head": {
 			"$ref": "#/definitions/qmhash"
 		}
 	},
 	"additionalProperties": false,
 	"required": [
-		"PROTOCOL",
-		"SIG_DATE",
-		"NOTARY",
-		"PUB_KEY",
-		"HOC_HEAD"
+		"protocol",
+		"sig_date",
+		"notary",
+		"pub_key",
+		"hoc_head"
 	]
 }
