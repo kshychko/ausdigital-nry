@@ -43,8 +43,8 @@ Sustainable and secure infrastructure:
 
 These are achieved by:
 
- * Notarising all objects (in a timeframe) into a proscribed Merkel-DAG data structure that is pegged to the Blockchain with a single record, which references a minimal signed proof document that can be verified before accessing a significant data volumes.
- * Distributing the pegged Merkel-DAG proof structure with a decentralised, content-addressable memory system (modelled on and compatible with the Inter Planetary File System, IPFS).
+ * Notarising all objects (in a timeframe) into a proscribed Merkle-DAG data structure that is pegged to the Blockchain with a single record, which references a minimal signed proof document that can be verified before accessing a significant data volumes.
+ * Distributing the pegged Merkle-DAG proof structure with a decentralised, content-addressable memory system (modelled on and compatible with the Inter Planetary File System, IPFS).
  * Avoid propietary blockchains. Adopt the largest public blockchain with the highest market capitalisation (BitCoin), thereby sourcing work-proof from an open market of commodity mining services and multiple open source -oftwaresimplementations.
 
 
@@ -236,11 +236,11 @@ Periodically, the Notary:
  * Generates a Multi-Part Hosting Obligation Contract (Full HOC) describing archived records
  * Makes timely public commitment to store and publish archived objects under the terms of the HOC
 
-The Full HOC is a four layer Directed Acyclic Graph (DAG) comprised of JSON files, where each layer references the lower layer by cryptographic hash of its contents, making it a "Merkel-DAG" structure.
+The Full HOC is a four layer Directed Acyclic Graph (DAG) comprised of JSON files, where each layer references the lower layer by cryptographic hash of its contents, making it a "Merkle-DAG" structure.
 
-Each document in this Merkel-DAG has a specific purpose. Some parts of the structure are always public (first two layers, HOC Proof and HOC Header). Other parts may or may not be public depending on the application (HOC Detail and Notarised Object).
+Each document in this Merkle-DAG has a specific purpose. Some parts of the structure are always public (first two layers, HOC Proof and HOC Header). Other parts may or may not be public depending on the application (HOC Detail and Notarised Object).
 
-![ERD of Merkel-DAG](./hoc.png)
+![ERD of Merkle-DAG](./hoc.png)
 
 The public parts of the HOC are published in a directory-like structure with a content-address in its path. Two parts have fixed names (`proof.json` and `proof.sig`), while all the other parts names are consistent with their content-addresses (meaning the file name is equivalent to the IPFS address of the file contents).
 
@@ -259,7 +259,7 @@ To ensure efficient auditability of notaries, an independent observer should be 
 
  * The Gazetted address MUST contain a HOC Proof, comprised of two files, `proof.json` and `proof.sig`.
  * `proof.json` MUST be valid per the [`proof.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/proof.schema) JSON schema specification.
- * `proof.json` MUST contain a PROTOCOL attribute, which identifies the protocol for processing the Merkel-DAG. The value of the PROTOCOL attribute MUST be `ausditigal-nry/1.0`.
+ * `proof.json` MUST contain a PROTOCOL attribute, which identifies the protocol for processing the Merkle-DAG. The value of the PROTOCOL attribute MUST be `ausditigal-nry/1.0`.
  * `proof.json` MUST contain a SIG_DATE attribute containing an ISO 8601 formatted date and time string identifying when the notary notionally created the `proof.sig`
  * `proof.json` MUST contain a NOTARY attribute, which references the business identifier of the notary in URN format consistent with AusDigital DCL and DCP specifications.
  * `proof.json` MUST contain a `pub_key` attribute, which contains a public key (**TODO**: what format? how encoded?)
@@ -273,7 +273,7 @@ To ensure efficient auditability of notaries, an independent observer should be 
 
 ### Validating HOC Proof
 
-The first step in validating the Merkel-Dag is to check that the proof.json exists and is no larger than MAX_SIZE.
+The first step in validating the Merkle-Dag is to check that the proof.json exists and is no larger than MAX_SIZE.
 
 For example, assuming the blockchain contains `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/`, the validation begins with:
 
