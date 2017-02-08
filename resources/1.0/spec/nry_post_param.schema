@@ -21,7 +21,7 @@
 		"ac_code": {
 			"description": "an protocol-depending attribute",
 			"type": "string"
-		}
+		},
 		"restrict_list": {
 			"description": "A single extension for private use.",
 			"type": "array",
