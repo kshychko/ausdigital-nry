@@ -27,7 +27,9 @@
 			"type": "array",
 			"items": {
 				$ref: "#/definitions/urn"
-			}
+			},
+			"minItems": 1,
+			"uniqueItems": true
 		}
 	},
 	"additionalProperties": false,
