@@ -2,25 +2,25 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "array",
 	"items": {
-		$ref: "#/definitions/hocHead"
+		$ref: "#/definitions/hoc_head"
 	},
 	"description": "schema for HOC Header",
 	"definitions": {
-		"hocHead": {
+		"hoc_head": {
 			"type": "object",
 			"properties": {
-				"HOC_DETAIL": {
+				"hoc_detail": {
 					"$ref": "#/definitions/qmhash"
 				},
-				"DURABILITY": {
+				"durability": {
 					"description": "an ISO 8601 formatted date string",
 					"type": "string",
 					"format": "date"
 				},
-				"NETWORK": {
+				"network": {
 					$ref: "#/definitions/urn"
 				},
-				"AC_CODE": {
+				"ac_code": {
 					"description": "an attribute",
 					"type": "number",
 					"minimum": 0
@@ -28,10 +28,10 @@
 			},
 			"additionalProperties": false,
 			"required": [
-				"HOC_DETAIL",
-				"DURABILITY",
-				"NETWORK",
-				"AC_CODE"
+				"hoc_detail",
+				"durability",
+				"network",
+				"ac_code"
 			]
 		},
 		"urn": {

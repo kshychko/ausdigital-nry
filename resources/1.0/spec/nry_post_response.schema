@@ -10,10 +10,10 @@
 		}
 	},
 	"properties": {
-		"DOC-ID": {
+		"doc_id": {
 			$ref: "#/definitions/qmhash"
 		}
 	},
 	"additionalProperties": false,
-	"required": ["DOC-ID"]
+	"required": ["doc_id"]
 }

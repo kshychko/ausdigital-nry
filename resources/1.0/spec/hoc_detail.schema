@@ -9,20 +9,20 @@
 		"hocDetail": {
 			"type": "object",
 			"properties": {
-				"DURABILITY": {
+				"durability": {
 					"description": "an ISO 8601 formatted date string",
 					"type": "string",
 					"format": "date"
 				},
-				"OBJECT": {
+				"object": {
 					"type": "object",
 					"additionalProperties": true
 				}
 			},
 			"additionalProperties": false,
 			"required": [
-				"DURABILITY",
-				"OBJECT"
+				"durability",
+				"object"
 			]
 		}
 	}
