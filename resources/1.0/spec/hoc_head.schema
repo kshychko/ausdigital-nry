@@ -13,17 +13,16 @@
 					"$ref": "#/definitions/qmhash"
 				},
 				"durability": {
-					"description": "an ISO 8601 formatted date string",
+					"description": "an ISO 8601 formatted date and time string",
 					"type": "string",
-					"format": "date"
+					"format": "date-time"
 				},
 				"network": {
 					$ref: "#/definitions/urn"
 				},
 				"ac_code": {
-					"description": "an attribute",
-					"type": "number",
-					"minimum": 0
+					"description": "an protocol-depending attribute",
+					"type": "string"
 				}
 			},
 			"additionalProperties": false,

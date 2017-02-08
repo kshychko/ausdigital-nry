@@ -37,9 +37,9 @@
 			"$ref": "#/definitions/pubKey"
 		},
 		"durability": {
-			"description": "an ISO 8601 formatted date string",
+			"description": "an ISO 8601 formatted date and time string",
 			"type": "string",
-			"format": "date"
+			"format": "date-time"
 		},
 		"hoc_head": {
 			"$ref": "#/definitions/qmhash"
