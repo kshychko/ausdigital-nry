@@ -3,11 +3,11 @@ title: "AusDigital Notary (NRY) 1.0 Specification"
 specID: "ausdigital-nry/1"
 status: "![raw](http://rfc.unprotocols.org/spec:2/COSS/raw.svg)"
 editors: "[Chris Gough](mailto:christopher.d.gough@gmail.com)"
-contributors: 
+contributors:
 ---
 
-## Introduction 
- 
+## Introduction
+
 This document describes the Notary (NRY) specification, which provides an irrefutable
 history of a specific "contract" (e.g. an invoice and it's status lifecycle), pegged to
 a blockchain distributed ledger. This service supports dispute resolution and provides
@@ -38,7 +38,6 @@ Sustainable and secure infrastructure:
  * Leverage the strongest consensus product available (maximise resistance to Sybl attacks).
  * Leverage the most efficient proof market available (minimise cost of proof at the given consensus-strength).
  * Avoid single point of failure in the network that stores and distributes existance proof.
- * 
 
 
 These are achieved by:
@@ -66,22 +65,22 @@ Comments and feedback are encouraged and welcome. Pull requests with improvement
 Phrase | Definition
 ------------ | -------------
 ausdigital-nry/1 | This specification.
-ausdigital-dcl/1 | Version 1 of the [AusDigtial](http://ausdigital.org) [Digital Capability Lookup (DCL)](http://ausdigital.org/specs/ausdigital-dcl/1.0) specification
-ausdigital-dcp/1 | Version 1 of the AusDigtial [Digital Capability Provider (DCP)](http://ausdigital.org/specs/ausdigital-dcp/1.0) specification
+ausdigital-dcl/1 | Version 1 of the [AusDigital](http://ausdigital.org) [Digital Capability Lookup (DCL)](http://ausdigital.org/specs/ausdigital-dcl/1.0) specification
+ausdigital-dcp/1 | Version 1 of the AusDigital [Digital Capability Provider (DCP)](http://ausdigital.org/specs/ausdigital-dcp/1.0) specification
 ausdigital-idp/1 | Version 1 of the AusDigital [Identity Provider (IDP)](http://ausdigital.org/specs/ausdigital-idp/1.0) specification.
 ausdigital-tap/1 | Version 1 of the AusDigital [Transaction Access Point(TAP)](http://ausdigital.org/ausdigital-tap) specification.
 
 This service depends on `ausdigital-dcl/1`, `ausdigital-dcp/1` and `ausdigital-idp/1`.
 
 The `ausdigital-tap` specification depends on this document. Note, while this specification describes a generic notary interface, the TAP specification provides further restriction on the use of the notary.
- 
+
 
 ## Licence
 
 Copyright (c) 2016 the Editor and Contributors. All rights reserved.
 
 This Specification is free software; you can redistribute it and/or modify it under the
-terms of the GNU General Public License as published by the Free Software Foundation; 
+terms of the GNU General Public License as published by the Free Software Foundation;
 either version 3 of the License, or (at your option) any later version.
 
 This Specification is distributed in the hope that it will be useful, but WITHOUT ANY
@@ -161,16 +160,16 @@ The protocol places no physical restriction on the `object.foo` POSTed to the no
 
 The `param.json` file:
 
- * MUST be a JSON file that is valid per [`nry_post_param.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/nry_post_param.schema) JSON schema.
+ * MUST be a JSON file that is valid per [`nry_post_param.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/resources/1.0/spec/nry_post_param.schema) JSON schema.
  * MUST contain a `durability` attribute that is an ISO 8601 formatted date string
  * The `durability` date MUST be not less than one month in the future
  * MUST contain a `network` attribute that is a valid business identifier URN per `ausdigital-dcp/1` specification.
  * MUST contain an `ac_code` attribute, that is a non-negative integer.
  * MAY contain an `restrict_list` attribute, that is a JSON list of zero or more elements that are valid business identifier URNs per `ausdigital-dcp/1`.
- * If the `network` value is a business identifier of the notary itself, then the `ac_code` MUST be interpreted per `ausdigital-nry/1`. 
+ * If the `network` value is a business identifier of the notary itself, then the `ac_code` MUST be interpreted per `ausdigital-nry/1`.
  * If the `network` value is not a business identifier of the notary, the `ac_code` MAY be interpreted as `ac_code` = 3.
  * If the `network` value is not a business identifier of the notary, the notary MAY silently fail to store the notarised object.
- * If the `network` value is not a business identifier of the notary, the Notary API resource must be `/private/` (alternate `network`s MUST NOT be used with the `/public/` resource). 
+ * If the `network` value is not a business identifier of the notary, the Notary API resource must be `/private/` (alternate `network`s MUST NOT be used with the `/public/` resource).
  * If the Notary API resource is `/public/`, the `ac_code` must be 0.
  * If the `ac_code` is 1, 2 or 3 (or may be interpreted as 3), the Notary API resource must be '/private/'.
 
@@ -179,7 +178,7 @@ When the notary recieves a valid notarisation request, if it does not refuse the
 
  * place notarised object in a system of record (unless the `param.json` `network` value is not a business identifier of the notary, in which case the notary MAY place the notarised object in a system of record)
  * reference API Spec (return HTTP 200 response code, headers, etc)
- * return HTTP body that is JSON document that is valid per [`nry_post_response.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/nry_post_response.schema) JSON schema.
+ * return HTTP body that is JSON document that is valid per [`nry_post_response.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/resources/1.0/spec/nry_post_response.schema) JSON schema.
  * The body must contain a `doc_id` attribute containing a verifyable content-address of the notarised object, using a hash and encoding scheme that is a valid IPFS address.
 
 
@@ -190,7 +189,7 @@ When the notary recieves an invalid notarisation request, or if it recieves a va
  * etc... TODO
 
 The `doc_id` returned in the body of successful POSTs (HTTP code 200 responses) is a valid content identifier. This `doc_id` is subsequently used as notarised object identifier in blockchain Gazettal. It is also the `doc_id` used in `GET /public/{doc_id}/` and `GET /private/{doc_id}/` API calls.
-  
+
 
 ## Search Notary Archives
 
@@ -253,16 +252,16 @@ The following examples assume that this address is the address of the directory-
 
 ## HOC Proof
 
-The HOC Proof is used to validate the Full HOC prior to potentially intensive computation or network activity. 
+The HOC Proof is used to validate the Full HOC prior to potentially intensive computation or network activity.
 
 To ensure efficient auditability of notaries, an independent observer should be able to parse the blockchain and extract `OP_RETURN` transactions that look like IPFS addresses. For each IPFS address-like record found, the observer should be able to ignore invalid HOCs cheaply. The purpose of the HOC Proof is to provide a compact and verifiable reference to the hoc_head document (which may be less compact).
 
  * The Gazetted address MUST contain a HOC Proof, comprised of two files, `proof.json` and `proof.sig`.
- * `proof.json` MUST be valid per the [`proof.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/proof.schema) JSON schema specification.
- * `proof.json` MUST contain a PROTOCOL attribute, which identifies the protocol for processing the Merkle-DAG. The value of the PROTOCOL attribute MUST be `ausditigal-nry/1.0`.
+ * `proof.json` MUST be valid per the [`proof.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/resources/1.0/spec/proof.schema) JSON schema specification.
+ * `proof.json` MUST contain a PROTOCOL attribute, which identifies the protocol for processing the Merkle-DAG. The value of the PROTOCOL attribute MUST be `ausdigital-nry/1.0`.
  * `proof.json` MUST contain a SIG_DATE attribute containing an ISO 8601 formatted date and time string identifying when the notary notionally created the `proof.sig`
  * `proof.json` MUST contain a NOTARY attribute, which references the business identifier of the notary in URN format consistent with AusDigital DCL and DCP specifications.
- * `proof.json` MUST contain a `pub_key` attribute, which contains a public key (**TODO**: what format? how encoded?)
+ * `proof.json` MUST contain a `pub_key` attribute, which contains a public key (**TODO**: what format? how encoded? gpg2 armor format?)
  * The public key in the `pub_key` attribute of `proof.json` MUST be published in the DCP entry of the NOTARY business, as a valid (not revoked) key on SIG_DATE
  * `proof.sig` MUST be a valid signature of `proof.json`, using the public key identified in `proof.json`
  * `proof.json` MUST contain a `durability` attribute, the value of which is an ISO 8601 formatted date string.
@@ -282,7 +281,7 @@ For example, assuming the blockchain contains `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemt
  * test for the existence of `/ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/proof.sig`
  * if the proof.sig is larger than `MAX_SIZE`, it is not valid. There is no need to download more than `MAX_SIZE + 1 byte` in this step.
 
-If `proof.json` and `proof.sig` both exist and neither exceed MAX_SIZE, the next step is to ensure that `proof.json` validates agains the json schema. Assuming `proof.json` and [`proof.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/proof.schema) are both in the current working directory, the `jsonschema` program could be used like this:
+If `proof.json` and `proof.sig` both exist and neither exceed MAX_SIZE, the next step is to ensure that `proof.json` validates agains the json schema. Assuming `proof.json` and [`proof.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/resources/1.0/spec/proof.schema) are both in the current working directory, the `jsonschema` program could be used like this:
 
 ```bash
 jsonschema -i proof.json proof.schema
@@ -321,7 +320,7 @@ After verifying proof.json with proof.sig, it is safe to process the HOC Header
 The HOC Header is processed after the HOC Proof has been validated. It is essentially an arbitrarily long list of references to HOC Detail records. It also contains metadata about access and availability of HOC Detail records.
 
  * The Full HOC (directory-like content-address, gazetted to the blockchain) MUST contain a file with a valid content-address, that is referenced by the `hoc_head` attribute of `proof.json` (the `hoc_head` file)
- * The contents of the `hoc_head` file MUST be json that is valid per [`hoc_head.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/hoc_head.schema) JSON schema
+ * The contents of the `hoc_head` file MUST be json that is valid per [`hoc_head.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/resources/1.0/spec/hoc_head.schema) JSON schema
  * `hoc_head` MUST contain a list of one or more elements.
  * Each element in `hoc_head` list MUST contain a `hoc_detail`attribute, which is a valid content-address of a file.
  * Each element in `hoc_head` list MUST contain a `durability` attribute.
@@ -395,7 +394,7 @@ The availability or otherwise of HOC Headers may or may not be directly related 
  * If the `hoc_head.network` is a URN of a different business as the `proof.json` NOTARY, the availability or otherwise of `hoc_detail` (and notarised objects) MUST NOT be interpreted as impacting the reputation of either business.
  * The `durability` date/time represents the limit of promised availability of the notarised object.
  * If the `hoc_detail` `network` is the same business as NOTARY, that means the Notary is taking responsibility for the promise of availability. Failure to meet terms of `ac_code` and `durability` will detrimentally impact the reputation of the Notary.
- 
+
 If the `hoc_head.network` identifies a business other than the `proof.json` NOTARY, the `durability` and `ac_code` represent claims (by the notary) about promises made by another business. The reason these MUST NOT be interpreted as impacting the objective reputation of either party is that it is impossible to distinguish false claims from true claims and broken promises.
 
 In addition to global objective notary reputation (which can be based on transparently auditable open data), organisations with privileged access to the notary API (through RESTRICTION_LIST privileges to `ac_code` "1", "2" and "3" notarised objects and `ac_code` "2" and "3" `hoc_detail` records) may produce private objective reputation scores.
@@ -406,7 +405,7 @@ In addition to global objective notary reputation (which can be based on transpa
 The HOC Detail is a JSON document of arbitrary size, referenced by its content-address in the HOC Header list.
 
  * The HOC Detail MUST contain a list of one or more elements.
- * The HOC Detail MUST be validated against the [`hoc_detail.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/docs/resources/1.0/spec/hoc_detail.schema) JSON schema.
+ * The HOC Detail MUST be validated against the [`hoc_detail.schema`](https://github.com/ausdigital/ausdigital-nry/blob/master/resources/1.0/spec/hoc_detail.schema) JSON schema.
 
 
 Every element in the HOC Detail list:
@@ -414,14 +413,14 @@ Every element in the HOC Detail list:
  * MUST contain a `durability` attribute, which contains an ISO 8601 formatted date string.
  * The `durability` date MUST NOT be less than one month ahead of the `proof.json` SIG_DATE attribute.
  * The `durability` date MUST NOT be less than the corresponding `hoc_header` durability date.
- * MUST contain an `object` attribute, which contains a content-address of some notarised object. 
+ * MUST contain an `object` attribute, which contains a content-address of some notarised object.
 
 The elements in the HOC Detail inherits an `ac_code` and `network` from the reference to the HOC Detail in the HOC Header.
 
  * If the inherited `ac_code` is "0", and `proof.json` NOTARY identifies the same business as the inherited `network`, and the listed `durability` date is in the future, then the `object` this HOC Detail must be available through the API (e.g. `GET /public/{content_address}`)
  * If the inherited `ac_code` is "1", "2" or "3"; and `proof.json` NOTARY identifies the same business as the inherited `network`, and the listed `durability` date is in the future, and the API Token has a valid identity claim, and the identity in the API token identifies a business in the restrict_list of the object, then the `object` this HOC Detail MUST be available through the API (e.g. `GET /private/{content_address}`)
 
- 
+
  # Related Material
 
  * [GitHub issues](https://github.com/ausdigital/ausdigital-nry/issues/) for collaborating on the development of the NRY.
