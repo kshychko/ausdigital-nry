@@ -5,5 +5,114 @@
     "title" : "Notary (NRY) interface specification",
     "description" : "The \"Notary\" (NRY) specification supports financial service innovation by defining a standard interface and protocol for recording financial grade transactions in a distributed ledger"
   },
-  "paths" : { }
+  "parameters" : {
+    "namespace" : {
+      "name" : "namespace",
+      "in" : "path",
+      "description" : "`private` or `public`",
+      "required" : true,
+      "type" : "string",
+      "default" : "public"
+    },
+    "docId" : {
+      "name" : "doc_id",
+      "in" : "path",
+      "description" : "QmHash of the notarized document",
+      "required" : true,
+      "type" : "string"
+    }
+  },
+  "paths" : {
+    "/{namespace}/" : {
+      "get" : {
+        "summary" : "List of documents metadatas",
+        "description" : "Return full list of all notarized documents for given namespace (public or private), with basic metadata and filtering/search capabilities.",
+        "operationId" : "getNryDocumentsList",
+        "parameters" : [ {
+          "$ref" : "#/parameters/namespace"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List of notary documents metadatas",
+            "schema" : {
+              "$ref" : "#/definitions/NryDocumentMetadataList"
+            }
+          },
+          "401" : {
+            "description" : "Wrong JWT auth (for /private/)"
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Notarize new document",
+        "description" : "multipart/form-data request to notarize some object.",
+        "parameters" : [ {
+          "$ref" : "#/parameters/namespace"
+        }, {
+          "description" : "object data, optionally with content-type and filename",
+          "in" : "formData",
+          "name" : "object",
+          "type" : "file",
+          "required" : true
+        }, {
+          "description" : "json file with parameters",
+          "in" : "formData",
+          "name" : "parameters",
+          "type" : "file",
+          "required" : true
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "success"
+          }
+        }
+      }
+    },
+    "/{namespace}/{doc_id}/" : {
+      "get" : {
+        "summary" : "Get document content",
+        "description" : "Return notarize document content for given doc_id. If namespace is `private` then the check if given user can view this document is performed.",
+        "operationId" : "getNryDocument",
+        "parameters" : [ {
+          "$ref" : "#/parameters/namespace"
+        }, {
+          "$ref" : "#/parameters/docId"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Document content (body), with content-type optionally provided (or `application/octet-stream` if unknown)"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "NryDocumentMetadataList" : {
+      "properties" : {
+        "businesses" : {
+          "description" : "list of found participants",
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/NryDocumentMetadata"
+          }
+        }
+      }
+    },
+    "NryDocumentMetadata" : {
+      "properties" : {
+        "doc_id" : {
+          "type" : "string"
+        },
+        "business" : {
+          "type" : "string"
+        },
+        "location" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
 }
