@@ -99,6 +99,17 @@
           }
         }
       }
+    },
+    "/archives/" : {
+      "get" : {
+        "summary" : "Get list of archives",
+        "description" : "Helper endpoint to see the list of already notarized items. Replaces gazette for debug purposes and easiness.\n",
+        "responses" : {
+          "200" : {
+            "description" : "List of the archives"
+          }
+        }
+      }
     }
   },
   "definitions" : {
