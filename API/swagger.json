@@ -5,6 +5,15 @@
     "title" : "Notary (NRY) interface specification",
     "description" : "The \"Notary\" (NRY) specification supports financial service innovation by defining a standard interface and protocol for recording financial grade transactions in a distributed ledger"
   },
+  "host" : "nry.testpoint.io",
+  "securityDefinitions" : {
+    "JWT" : {
+      "type" : "apiKey",
+      "description" : "JWT token value prepended by `JWT`, for example: \n`JWT XXXXX.YYYYYYYYYYYYYYYYYYYYYYY.ZZZZZZ`\nYou can get your JWT for testpoint.io services at https://idp.testpoint.io/\n",
+      "in" : "header",
+      "name" : "Authorization"
+    }
+  },
   "parameters" : {
     "namespace" : {
       "name" : "namespace",
@@ -48,6 +57,9 @@
       },
       "post" : {
         "summary" : "Notarize new document",
+        "security" : [ {
+          "JWT" : [ ]
+        } ],
         "description" : "multipart/form-data request to notarize some object.",
         "parameters" : [ {
           "$ref" : "#/parameters/namespace"
