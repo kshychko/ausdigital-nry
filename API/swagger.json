@@ -114,26 +114,30 @@
   },
   "definitions" : {
     "NryDocumentMetadataList" : {
-      "properties" : {
-        "businesses" : {
-          "description" : "list of found participants",
-          "type" : "array",
-          "items" : {
-            "$ref" : "#/definitions/NryDocumentMetadata"
-          }
-        }
+      "description" : "list found notarized documents",
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/NryDocumentMetadata"
       }
     },
     "NryDocumentMetadata" : {
       "properties" : {
-        "doc_id" : {
-          "type" : "string"
-        },
-        "business" : {
-          "type" : "string"
-        },
-        "location" : {
-          "type" : "string"
+        "data" : {
+          "properties" : {
+            "attributes" : {
+              "properties" : {
+                "doc_id" : {
+                  "type" : "string"
+                },
+                "business" : {
+                  "type" : "string"
+                },
+                "location" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
         }
       }
     }
