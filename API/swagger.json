@@ -127,13 +127,28 @@
             "attributes" : {
               "properties" : {
                 "doc_id" : {
-                  "type" : "string"
+                  "type" : "string",
+                  "description" : "QmHash of the document, uniquely describing the content"
                 },
                 "business" : {
-                  "type" : "string"
+                  "type" : "string",
+                  "description" : "URN participant identifier of the document sender"
                 },
                 "location" : {
-                  "type" : "string"
+                  "type" : "string",
+                  "description" : "relative URL where the notarized document may be found"
+                },
+                "created" : {
+                  "type" : "string",
+                  "description" : "ISO document creation time"
+                },
+                "durability" : {
+                  "type" : "string",
+                  "description" : "host till ISO datetime, after that date hosting MAY be provided, but not SHOULD be."
+                },
+                "ac_code" : {
+                  "type" : "integer",
+                  "description" : "ac_code field from spec describes publicity of the target items: HocDetails and notarized document."
                 }
               }
             }
