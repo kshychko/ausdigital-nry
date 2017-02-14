@@ -3,7 +3,7 @@
   "info" : {
     "version" : "1.0",
     "title" : "Notary (NRY) interface specification",
-    "description" : "The \"Notary\" (NRY) specification supports financial service innovation by defining a standard interface and protocol for recording financial grade transactions in a distributed ledger"
+    "description" : "\"The \"Notary\" (NRY) specification supports financial service innovation by defining a standard interface and protocol for recording financial grade transactions in a distributed ledger\n\nAll moments of time are described in ISO 8601 datetime format with the timezone. This requirement is made to ensure timezone is passed, and client fully understands the moment of time which client wants to describe.\n\nThe jsonapi.org is used where it's possible.\n"
   },
   "host" : "nry.testpoint.io",
   "securityDefinitions" : {
@@ -39,6 +39,24 @@
         "operationId" : "getNryDocumentsList",
         "parameters" : [ {
           "$ref" : "#/parameters/namespace"
+        }, {
+          "in" : "query",
+          "name" : "restricted_list",
+          "type" : "string",
+          "required" : false,
+          "description" : "comma-separated list of participant identifiers"
+        }, {
+          "in" : "query",
+          "name" : "submitted_after",
+          "type" : "string",
+          "required" : false,
+          "description" : "ISO 8601 date to filter the documents"
+        }, {
+          "in" : "query",
+          "name" : "submitted_before",
+          "type" : "string",
+          "required" : false,
+          "description" : "ISO 8601 date to filter the documents"
         } ],
         "responses" : {
           "200" : {
@@ -78,7 +96,10 @@
         } ],
         "responses" : {
           "201" : {
-            "description" : "success"
+            "description" : "Document created, notarization queued",
+            "schema" : {
+              "$ref" : "#/definitions/NryDocumentMetadataStandalone"
+            }
           }
         }
       }
@@ -114,43 +135,65 @@
   },
   "definitions" : {
     "NryDocumentMetadataList" : {
-      "description" : "list found notarized documents",
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/NryDocumentMetadata"
+      "properties" : {
+        "links" : {
+          "type" : "object",
+          "description" : "standard JsonAPI links object"
+        },
+        "data" : {
+          "description" : "documents metadatas list",
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/NryDocumentMetadata"
+          }
+        },
+        "meta" : {
+          "type" : "object",
+          "description" : "standard JsonAPI meta object"
+        }
+      }
+    },
+    "NryDocumentMetadataStandalone" : {
+      "properties" : {
+        "data" : {
+          "$ref" : "#/definitions/NryDocumentMetadata"
+        }
       }
     },
     "NryDocumentMetadata" : {
       "properties" : {
-        "data" : {
+        "type" : {
+          "type" : "string",
+          "description" : "NryDocument"
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "notary-unique internal document identifier, uuid4. Different users may send same file to notarize, having same doc_id but different UUID identifiers, which"
+        },
+        "attributes" : {
           "properties" : {
-            "attributes" : {
-              "properties" : {
-                "doc_id" : {
-                  "type" : "string",
-                  "description" : "QmHash of the document, uniquely describing the content"
-                },
-                "business" : {
-                  "type" : "string",
-                  "description" : "URN participant identifier of the document sender"
-                },
-                "location" : {
-                  "type" : "string",
-                  "description" : "relative URL where the notarized document may be found"
-                },
-                "created" : {
-                  "type" : "string",
-                  "description" : "ISO document creation time"
-                },
-                "durability" : {
-                  "type" : "string",
-                  "description" : "host till ISO datetime, after that date hosting MAY be provided, but not SHOULD be."
-                },
-                "ac_code" : {
-                  "type" : "integer",
-                  "description" : "ac_code field from spec describes publicity of the target items: HocDetails and notarized document."
-                }
-              }
+            "doc_id" : {
+              "type" : "string",
+              "description" : "QmHash of the document, uniquely describing the content"
+            },
+            "business" : {
+              "type" : "string",
+              "description" : "URN participant identifier of the document sender"
+            },
+            "location" : {
+              "type" : "string",
+              "description" : "relative URL where the notarized document may be found"
+            },
+            "created" : {
+              "type" : "string",
+              "description" : "ISO document creation time"
+            },
+            "durability" : {
+              "type" : "string",
+              "description" : "host till ISO datetime, after that date hosting MAY be provided, but not SHOULD be."
+            },
+            "ac_code" : {
+              "description" : "ac_code field from spec describes publicity of the target items: HocDetails and notarized document."
             }
           }
         }
