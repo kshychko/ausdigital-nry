@@ -41,7 +41,7 @@
           "$ref" : "#/parameters/namespace"
         }, {
           "in" : "query",
-          "name" : "restricted_list",
+          "name" : "restrict_list",
           "type" : "string",
           "required" : false,
           "description" : "comma-separated list of participant identifiers"
