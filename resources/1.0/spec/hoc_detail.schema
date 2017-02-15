@@ -6,6 +6,13 @@
 	},
 	"description": "schema for HOC Detail",
 	"definitions": {
+		"qmhash": {
+			"description": "a valid content-address hash",
+			"type": "string",
+			"pattern": "^Qm[a-zA-Z0-9]{44}$"
+		}
+	},
+	"definitions": {
 		"hocDetail": {
 			"type": "object",
 			"properties": {
@@ -15,14 +22,14 @@
 					"format": "date-time"
 				},
 				"object": {
-					"type": "string",
-					"additionalProperties": true
+					"$ref": "#/definitions/qmhash"
 				}
 			},
 			"required": [
 				"durability",
 				"object"
 			]
-		}
+		},
+		"additionalProperties": false
 	}
 }
