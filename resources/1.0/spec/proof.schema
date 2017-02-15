@@ -4,7 +4,7 @@
 	"description": "schema for HOC Proof",
 	"definitions": {
 		"pubKey": {
-			"type": "object",
+			"type": "string"
 		},
 		"urn": {
 			"type": "string",
@@ -14,7 +14,7 @@
 		"qmhash": {
 			"description": "a valid content-address hash",
 			"type": "string",
-			"pattern": "^Qm[a-zA-Z0-9]{44}$"
+			"pattern": "^/ipfs/Qm[a-zA-Z0-9]{44}$"
 		}
 	},
 	"properties": {
@@ -22,7 +22,7 @@
 			"description": "an attribute, which identifies the protocol for processing the Merkel-DAG",
 			"type": "string",
 			"enum": [
-				"ausditigal-nry/1.0"
+				"ausdigital-nry/1.0"
 			]
 		},
 		"sig_date": {
