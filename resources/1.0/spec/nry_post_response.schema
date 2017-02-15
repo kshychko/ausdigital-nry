@@ -11,7 +11,7 @@
 	},
 	"properties": {
 		"doc_id": {
-			$ref: "#/definitions/qmhash"
+			"$ref": "#/definitions/qmhash"
 		}
 	},
 	"additionalProperties": false,

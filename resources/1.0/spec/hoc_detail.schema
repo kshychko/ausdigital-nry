@@ -2,7 +2,7 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "array",
 	"items": {
-		$ref: "#/definitions/hocDetail"
+		"$ref": "#/definitions/hocDetail"
 	},
 	"description": "schema for HOC Detail",
 	"definitions": {
@@ -15,11 +15,10 @@
 					"format": "date-time"
 				},
 				"object": {
-					"type": "object",
+					"type": "string",
 					"additionalProperties": true
 				}
 			},
-			"additionalProperties": false,
 			"required": [
 				"durability",
 				"object"

@@ -2,7 +2,7 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "array",
 	"items": {
-		$ref: "#/definitions/hoc_head"
+		"$ref": "#/definitions/hoc_head"
 	},
 	"description": "schema for HOC Header",
 	"definitions": {
@@ -18,7 +18,7 @@
 					"format": "date-time"
 				},
 				"network": {
-					$ref: "#/definitions/urn"
+					"$ref": "#/definitions/urn"
 				},
 				"ac_code": {
 					"description": "an protocol-depending attribute",
