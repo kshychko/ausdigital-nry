@@ -2,18 +2,18 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "array",
 	"items": {
-		"$ref": "#/definitions/hocDetail"
+		"$ref": "#/definitions/hoc_detail"
 	},
 	"description": "schema for HOC Detail",
 	"definitions": {
-		"qmhash": {
+		"content_address": {
 			"description": "a valid content-address hash",
 			"type": "string",
 			"pattern": "^Qm[a-zA-Z0-9]{44}$"
 		}
 	},
 	"definitions": {
-		"hocDetail": {
+		"hoc_detail": {
 			"type": "object",
 			"properties": {
 				"durability": {
@@ -22,7 +22,7 @@
 					"format": "date-time"
 				},
 				"object": {
-					"$ref": "#/definitions/qmhash"
+					"$ref": "#/definitions/content_address"
 				}
 			},
 			"required": [

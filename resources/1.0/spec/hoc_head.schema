@@ -10,7 +10,7 @@
 			"type": "object",
 			"properties": {
 				"hoc_detail": {
-					"$ref": "#/definitions/qmhash"
+					"$ref": "#/definitions/content_address"
 				},
 				"durability": {
 					"description": "an ISO 8601 formatted date and time string",
@@ -38,7 +38,7 @@
 			"pattern": "^urn:[a-z0-9][a-z0-9-]{0,31}:[a-z0-9()+,\\-.:=@;$_!*'%/?#]+$",
 			"description": "a valid business identifier URN per ausdigital-dcl/1 and  ausdigital-dcp/1"
 		},
-		"qmhash": {
+		"content_address": {
 			"description": "a valid content-address hash",
 			"type": "string",
 			"pattern": "^Qm[a-zA-Z0-9]{44}$"

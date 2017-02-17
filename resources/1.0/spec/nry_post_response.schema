@@ -3,7 +3,7 @@
 	"type": "object",
 	"description": "schema for notary post response",
 	"definitions": {
-		"qmhash":{
+		"content_address":{
 			"description": "a valid content-address hash",
 			"type": "string",
 			"pattern": "^Qm[a-zA-Z0-9]{44}$"
@@ -11,7 +11,7 @@
 	},
 	"properties": {
 		"doc_id": {
-			"$ref": "#/definitions/qmhash"
+			"$ref": "#/definitions/content_address"
 		}
 	},
 	"additionalProperties": false,

@@ -11,10 +11,10 @@
 			"pattern": "^urn:[a-z0-9][a-z0-9-]{0,31}:[a-z0-9()+,\\-.:=@;$_!*'%/?#]+$",
 			"description": "a valid business identifier URN per ausdigital-dcl/1 and  ausdigital-dcp/1"
 		},
-		"IPFSAddress": {
-			"description": "IPFS Address format - /ipfs/ + qmhash",
+		"content_address": {
+			"description": "a valid content-address hash",
 			"type": "string",
-			"pattern": "^/ipfs/Qm[a-zA-Z0-9]{44}$"
+			"pattern": "^Qm[a-zA-Z0-9]{44}$"
 		}
 	},
 	"properties": {
@@ -42,7 +42,7 @@
 			"format": "date-time"
 		},
 		"hoc_head": {
-			"$ref": "#/definitions/IPFSAddress"
+			"$ref": "#/definitions/content_address"
 		}
 	},
 	"additionalProperties": false,
